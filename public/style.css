@@ -1,0 +1,14 @@
+* { margin: 0; padding: 0; }
+table, td { border: 1px solid gray; border-collapse: collapse; }
+body, #app { width: 100vw; height: 100vh; }
+#board { position: absolute; left: 50%; top: 50%; width: 360px; height: 360px; transform: translate(-50%, -50%); }
+#board td { width: 120px; height: 120px; text-align: center; line-height: 120px; font-size: 42px; font-weight: bold; }
+#board td:hover { background-color: gray; }
+#board td.O { background-color: #c0d4f8; color: cornflowerblue; }
+#board td.X { background-color: #f19faf; color: crimson; }
+h1 { position: absolute; left: 50%; top: 13%; transform: translate(-50%, -50%); font-size: 35px; }
+p { position: absolute; left: 50%; top: 75%; transform: translate(-50%, -50%); font-size: 24px;}
+p.result { position: absolute; left: 50%; top: 25%; transform: translate(-50%, -50%); font-size: 24px;}
+p.O { color: cornflowerblue; }
+p.X { color: crimson; }
+button.restart { position: absolute; left: 50%; top: 29%; transform: translate(-50%, -50%); font-size: 24px; }

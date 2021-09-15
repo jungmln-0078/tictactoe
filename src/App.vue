@@ -1,28 +1,45 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Tic Tac Toe</h1>
+    <p v-show="gameEnded" class="result">{{ result }}</p>
+    <button v-show="gameEnded" class="restart" @click="restartGame">re?</button>
+    <board ref="board" />
+    <p :class="turn">Turn of {{ turn }}</p>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Board from '@/components/board'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Board
+  },
+  data () {
+    return {
+      turn: 'O',
+      gameEnded: false,
+      isTieGame: false
+    }
+  },
+  methods: {
+    updateGame() {
+      this.gameEnded = this.$store.state.gameEnded;
+      this.turn = this.$store.state.turn;
+    },
+    restartGame() {
+      this.$store.commit('restartGame');
+      this.updateGame();
+      this.isTieGame = false;
+      this.$refs.board.clearBoard();
+      this.$forceUpdate();
+    }
+  },
+  computed: {
+    result() {
+      return this.isTieGame ? 'Draw' : this.turn + ' is Winner!';
+    }
   }
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
